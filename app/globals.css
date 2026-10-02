@@ -507,6 +507,7 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
+    animation-delay: 0ms !important;
   }
   .js .reveal,
   .js .reveal-clip,
@@ -515,11 +516,18 @@
     transform: none;
     clip-path: none;
   }
+  .marquee {
+    mask-image: none;
+  }
   .marquee__track {
     animation: none;
     flex-wrap: wrap;
+    flex-shrink: 1;
+    min-width: 0;
+    width: 100%;
     justify-content: center;
-    row-gap: 2rem;
+    row-gap: 0.75rem;
+    padding-inline: 1rem;
   }
   .marquee__track[aria-hidden="true"] {
     display: none;

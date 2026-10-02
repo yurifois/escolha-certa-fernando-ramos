@@ -28,7 +28,7 @@ export default function FaqSection() {
                   href={waLink("Olá, Fernando! Tenho uma dúvida sobre seguros.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-0.5 inline-flex items-center gap-1.5 font-semibold text-[#0e6b34] hover:underline"
+                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-[#0e6b34] hover:underline"
                 >
                   <WhatsAppIcon className="size-4" /> Pergunte ao {SITE.brokerShort}
                 </a>

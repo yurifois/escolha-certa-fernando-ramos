@@ -64,13 +64,13 @@ export default async function ServicePage({ params }: Props) {
             <nav aria-label="Trilha" className="rise">
               <ol className="flex flex-wrap items-center gap-2 text-sm text-muted">
                 <li>
-                  <a href={withBase("/")} className="inline-flex items-center gap-1.5 hover:text-brand">
+                  <a href={withBase("/")} className="inline-flex min-h-11 items-center gap-1.5 hover:text-brand">
                     <ArrowLeft className="size-4" aria-hidden /> Início
                   </a>
                 </li>
                 <li aria-hidden>/</li>
                 <li>
-                  <a href={withBase("/#seguros")} className="hover:text-brand">
+                  <a href={withBase("/#seguros")} className="inline-flex min-h-11 items-center hover:text-brand">
                     Seguros
                   </a>
                 </li>

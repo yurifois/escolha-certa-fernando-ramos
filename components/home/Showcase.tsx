@@ -85,6 +85,7 @@ export default function Showcase() {
                       type="button"
                       role="radio"
                       aria-checked={active}
+                      aria-label={p.label}
                       tabIndex={active ? 0 : -1}
                       onClick={() => choose(p.id)}
                       className={`relative min-h-11 shrink-0 rounded-full px-3 text-[0.8125rem] font-semibold transition-colors min-[400px]:px-4 sm:px-5 sm:text-sm ${
@@ -98,7 +99,8 @@ export default function Showcase() {
                           transition={{ type: "spring", stiffness: 420, damping: 36 }}
                         />
                       )}
-                      <span className="relative">{p.label}</span>
+                      <span className="relative min-[400px]:hidden">{p.short}</span>
+                      <span className="relative hidden min-[400px]:inline">{p.label}</span>
                     </button>
                   );
                 })}

@@ -31,6 +31,7 @@ export default function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-500 ${
         stuck || open
@@ -89,11 +90,12 @@ export default function Header() {
         </div>
       </div>
 
+    </header>
       {/* Menu móvel */}
       <div
         id="menu-movel"
         hidden={!open}
-        className="fixed inset-x-0 bottom-0 top-[var(--header-h)] overflow-y-auto bg-paper px-4 pb-10 pt-4 sm:px-6 lg:hidden"
+        className="fixed inset-x-0 bottom-0 top-[var(--header-h)] z-50 overflow-y-auto overscroll-contain bg-paper px-4 pb-10 pt-4 sm:px-6 lg:hidden"
       >
         <nav aria-label="Menu">
           <ul className="grid">
@@ -127,6 +129,6 @@ export default function Header() {
           </a>
         </div>
       </div>
-    </header>
+    </>
   );
 }

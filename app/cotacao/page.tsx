@@ -31,7 +31,7 @@ export default function CotacaoPage() {
             href={waLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 font-semibold text-[#0e6b34] hover:underline"
+            className="mt-6 inline-flex min-h-11 items-center gap-2 font-semibold text-[#0e6b34] hover:underline"
           >
             <WhatsAppIcon className="size-5" /> Prefere falar direto? {SITE.phone.display}
           </a>

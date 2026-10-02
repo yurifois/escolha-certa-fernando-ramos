@@ -21,16 +21,16 @@ export default function Footer() {
 
           <nav aria-label="Rodapé" className="lg:col-span-2">
             <h2 className="t-eyebrow text-brand-400">Navegação</h2>
-            <ul className="mt-5 grid gap-3">
+            <ul className="mt-3 grid lg:mt-5 lg:gap-3">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="transition-colors hover:text-white">
+                  <a href={n.href} className="inline-flex min-h-11 items-center transition-colors hover:text-white lg:min-h-0">
                     {n.label}
                   </a>
                 </li>
               ))}
               <li>
-                <a href={withBase("/cotacao/")} className="transition-colors hover:text-white">
+                <a href={withBase("/cotacao/")} className="inline-flex min-h-11 items-center transition-colors hover:text-white lg:min-h-0">
                   Cotação online
                 </a>
               </li>
@@ -39,10 +39,10 @@ export default function Footer() {
 
           <div className="lg:col-span-3">
             <h2 className="t-eyebrow text-brand-400">Seguros</h2>
-            <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 lg:grid-cols-1">
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 lg:mt-5 lg:grid-cols-1 lg:gap-y-3">
               {SERVICES.map((s) => (
                 <li key={s.slug}>
-                  <a href={withBase(`/servicos/${s.slug}/`)} className="transition-colors hover:text-white">
+                  <a href={withBase(`/servicos/${s.slug}/`)} className="inline-flex min-h-11 items-center transition-colors hover:text-white lg:min-h-0">
                     {s.title}
                   </a>
                 </li>
@@ -52,23 +52,23 @@ export default function Footer() {
 
           <div className="lg:col-span-3">
             <h2 className="t-eyebrow text-brand-400">Contato</h2>
-            <ul className="mt-5 grid gap-4">
+            <ul className="mt-5 grid gap-5 lg:gap-4">
               <li className="flex gap-3">
                 <Phone className="mt-1 size-4 shrink-0 text-brand-400" aria-hidden />
-                <a href={waLink()} target="_blank" rel="noopener noreferrer" className="t-num hover:text-white">
+                <a href={waLink()} target="_blank" rel="noopener noreferrer" className="t-num -my-3 inline-block py-3 hover:text-white lg:my-0 lg:py-0">
                   {SITE.phone.display} <span className="text-white/50">· WhatsApp</span>
                 </a>
               </li>
               <li className="flex gap-3">
                 <Mail className="mt-1 size-4 shrink-0 text-brand-400" aria-hidden />
-                <a href={`mailto:${SITE.email}`} className="hover:text-white">
+                <a href={`mailto:${SITE.email}`} className="-my-3 inline-block py-3 hover:text-white lg:my-0 lg:py-0">
                   {SITE.email.split("@")[0]}@<wbr />
                   {SITE.email.split("@")[1]}
                 </a>
               </li>
               <li className="flex gap-3">
                 <MapPin className="mt-1 size-4 shrink-0 text-brand-400" aria-hidden />
-                <a href={SITE.address.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <a href={SITE.address.mapsUrl} target="_blank" rel="noopener noreferrer" className="-my-3 inline-block py-3 hover:text-white lg:my-0 lg:py-0">
                   {SITE.address.line1}
                   <br />
                   {SITE.address.line2}
@@ -95,7 +95,7 @@ export default function Footer() {
             © {year} {SITE.legalName}. Todos os direitos reservados.
           </p>
           <p className="flex flex-wrap gap-x-5 gap-y-2">
-            <a href={withBase("/privacidade/")} className="hover:text-white">
+            <a href={withBase("/privacidade/")} className="inline-flex min-h-11 items-center hover:text-white lg:min-h-0">
               Política de privacidade
             </a>
             <span>Marcas de seguradoras pertencem a seus respectivos titulares.</span>

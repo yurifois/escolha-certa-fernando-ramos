@@ -253,10 +253,13 @@ export default function QuoteWizard({
   return (
     <div className={`flex min-h-0 flex-1 flex-col ${variant === "page" ? "rounded-[28px] bg-paper shadow-[var(--shadow-3)] edge-light" : ""}`}>
       {/* Cabeçalho com o arco de progresso */}
-      <div className="relative shrink-0 px-5 pt-6 sm:px-9 sm:pt-8">
+      <div className="relative shrink-0 px-5 pr-16 pt-6 sm:px-9 sm:pr-16 sm:pt-8">
         <div className="flex items-center gap-4">
           <ProgressArc progress={progress} />
-          <ol className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-muted" aria-label="Etapas">
+          <p className="text-sm font-medium text-ink-2 sm:hidden" aria-hidden>
+            Etapa {Math.min(step, 3) + 1} de 4 · <span className="text-brand">{STEP_LABELS[Math.min(step, 3)]}</span>
+          </p>
+          <ol className="hidden flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-muted sm:flex" aria-label="Etapas">
             {STEP_LABELS.map((label, i) => (
               <li
                 key={label}
@@ -334,7 +337,7 @@ export default function QuoteWizard({
                   <button
                     type="button"
                     onClick={() => go(0)}
-                    className="-mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-brand-50 py-1.5 pl-2 pr-3 text-sm font-medium text-brand hover:bg-brand-100"
+                    className="-mt-2 inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-brand-50 pl-3 pr-4 text-sm font-medium text-brand hover:bg-brand-100"
                   >
                     <ServiceIcon icon={svc.icon} className="size-4" />
                     {svc.short}

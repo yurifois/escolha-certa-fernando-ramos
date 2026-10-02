@@ -429,28 +429,32 @@ export const SERVICE_BY_SLUG = Object.fromEntries(SERVICES.map((s) => [s.slug, s
   Service
 >;
 
-export const PROFILES: { id: ProfileId; label: string; hint: string; order: ServiceSlug[] }[] = [
+export const PROFILES: { id: ProfileId; label: string; short: string; hint: string; order: ServiceSlug[] }[] = [
   {
     id: "tudo",
     label: "Tudo",
+    short: "Tudo",
     hint: "Nove linhas de seguro. Escolha por onde começar.",
     order: ["automovel", "vida", "residencial", "saude", "empresarial", "viagem", "odonto", "condominial", "fianca"],
   },
   {
     id: "mim",
     label: "Para mim",
+    short: "Para mim",
     hint: "Para você, o que costuma vir primeiro é carro, vida e saúde.",
     order: ["automovel", "vida", "viagem", "saude", "odonto", "fianca", "residencial", "empresarial", "condominial"],
   },
   {
     id: "familia",
     label: "Minha família",
+    short: "Família",
     hint: "Para a família, o que costuma vir primeiro é casa, vida e saúde.",
     order: ["residencial", "vida", "saude", "odonto", "automovel", "viagem", "fianca", "empresarial", "condominial"],
   },
   {
     id: "negocio",
     label: "Meu negócio",
+    short: "Negócio",
     hint: "Para a empresa: patrimônio, imóvel e benefícios para a equipe.",
     order: ["empresarial", "condominial", "fianca", "saude", "automovel", "vida", "residencial", "viagem", "odonto"],
   },
