@@ -1,0 +1,527 @@
+@import "tailwindcss";
+
+/* ───────────────────────── Design tokens (direção criativa do Jev) ───────────────────────── */
+@theme {
+  --color-brand: #3f4095;
+  --color-brand-700: #33357d;
+  --color-brand-950: #15163a;
+  --color-brand-400: #9fa0e0;
+  --color-brand-100: #e4e5f4;
+  --color-brand-50: #f2f2fa;
+
+  --color-paper: #f7f6f9;
+  --color-paper-lav: #e9e3ea;
+  --color-surface: #ffffff;
+  --color-surface-2: #efedf3;
+  --color-line: #e1dfe8;
+
+  --color-ink: #1f1f1f;
+  --color-ink-2: #4a4a55;
+  --color-muted: #6e6c7a;
+  --color-night: #121216;
+  --color-sand: #c9b28a;
+
+  --color-wa: #25d366;
+  --color-wa-hover: #1ebe5a;
+
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --radius-card: 20px;
+  --radius-arch: 999px 999px 24px 24px;
+
+  --shadow-1: 0 1px 2px rgb(31 31 40 / 0.06), 0 1px 1px rgb(31 31 40 / 0.04);
+  --shadow-2: 0 8px 24px -8px rgb(63 64 149 / 0.18), 0 2px 6px rgb(31 31 40 / 0.06);
+  --shadow-3: 0 30px 60px -20px rgb(21 22 58 / 0.35);
+}
+
+:root {
+  --fs-display-xl: clamp(2.6rem, 1.5rem + 5.2vw, 6rem);
+  --fs-display-lg: clamp(2.15rem, 1.4rem + 3.4vw, 4.25rem);
+  --fs-h2: clamp(1.75rem, 1.2rem + 2.2vw, 3rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+  --fs-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --header-h: 76px;
+  color-scheme: light;
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 12px);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-brand-400);
+  }
+  button,
+  [role="button"],
+  a,
+  summary,
+  label[for] {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  /* ───────────────────────── Tipografia ───────────────────────── */
+  .t-display-xl {
+    font-family: var(--font-display);
+    font-size: var(--fs-display-xl);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 450;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .t-display-lg {
+    font-family: var(--font-display);
+    font-size: var(--fs-display-lg);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 450;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .t-h2 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 460;
+    font-variation-settings: "opsz" 96;
+  }
+  .t-h3 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  .t-lead {
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+  }
+  .t-eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+  }
+  .t-num {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  /* Palavra em itálico de destaque nas headlines */
+  .t-accent {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-brand);
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+  .on-dark .t-accent {
+    color: var(--color-brand-400);
+  }
+
+  /* ───────────────────────── Grão sutil (detalhe caro) ───────────────────────── */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    z-index: 0;
+  }
+  .on-dark.grain::after {
+    mix-blend-mode: screen;
+    opacity: 0.06;
+  }
+
+  /* ───────────────────────── Revelar ao rolar ───────────────────────── */
+  .js .reveal {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    transition:
+      opacity 700ms var(--ease-out-expo) calc(var(--i, 0) * 70ms),
+      transform 700ms var(--ease-out-expo) calc(var(--i, 0) * 70ms);
+  }
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+  .js .reveal-clip {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1000ms var(--ease-out-expo) calc(var(--i, 0) * 70ms);
+  }
+  .js .reveal-clip.is-in {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Entrada acima da dobra: só CSS, não depende de JS (protege o LCP) */
+  .rise {
+    animation: rise 850ms var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+    }
+  }
+  .rise-clip {
+    animation: rise-clip 1050ms var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+  }
+  @keyframes rise-clip {
+    from {
+      clip-path: inset(0 0 100% 0);
+      transform: translate3d(0, 0.3em, 0);
+    }
+    to {
+      clip-path: inset(-20% -10% -20% -10%);
+      transform: none;
+    }
+  }
+
+  /* ───────────────────────── Brilho que segue o ponteiro ───────────────────────── */
+  [data-glow] {
+    position: relative;
+    isolation: isolate;
+  }
+  [data-glow]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 220ms linear;
+    background: radial-gradient(
+      320px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(63 64 149 / 0.12),
+      transparent 62%
+    );
+    z-index: 0;
+  }
+  [data-glow]:hover::before {
+    opacity: 1;
+  }
+  .on-dark [data-glow]::before,
+  [data-glow].on-dark::before {
+    background: radial-gradient(
+      320px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(159 160 224 / 0.18),
+      transparent 62%
+    );
+  }
+  /* Borda de 1px com luz */
+  .edge-light {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.7),
+      0 0 0 1px var(--color-line);
+  }
+  .on-dark .edge-light {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.08),
+      0 0 0 1px rgb(255 255 255 / 0.1);
+  }
+
+  /* ───────────────────────── Botões ───────────────────────── */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 48px;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.975rem;
+    line-height: 1.2;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      transform 220ms var(--ease-out-expo),
+      box-shadow 220ms var(--ease-out-expo),
+      background-color 200ms linear,
+      color 200ms linear;
+  }
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 200ms linear;
+    background: radial-gradient(
+      120px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(255 255 255 / 0.45),
+      transparent 60%
+    );
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:hover::after {
+    opacity: 1;
+  }
+  .btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .btn-wa {
+    background: var(--color-wa);
+    color: var(--color-ink);
+    box-shadow: 0 10px 30px -12px rgb(37 211 102 / 0.7);
+  }
+  .btn-wa:hover {
+    background: var(--color-wa-hover);
+  }
+  .btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+    box-shadow: 0 10px 30px -14px rgb(63 64 149 / 0.9);
+  }
+  .btn-primary:hover {
+    background: var(--color-brand-700);
+  }
+  .btn-primary::after {
+    background: radial-gradient(
+      120px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(255 255 255 / 0.25),
+      transparent 60%
+    );
+  }
+  .btn-ghost {
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-line);
+    background: rgb(255 255 255 / 0.6);
+  }
+  .btn-ghost:hover {
+    box-shadow: inset 0 0 0 1px var(--color-brand);
+    color: var(--color-brand);
+  }
+  .on-dark .btn-ghost {
+    color: #fff;
+    background: rgb(255 255 255 / 0.04);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2);
+  }
+  .on-dark .btn-ghost:hover {
+    color: #fff;
+    box-shadow: inset 0 0 0 1px var(--color-brand-400);
+  }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: var(--color-brand);
+  }
+  .link-arrow svg {
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .link-arrow:hover svg,
+  .group:hover .link-arrow svg {
+    transform: translateX(4px);
+  }
+
+  /* ───────────────────────── Fotos em arco (motivo da logo) ───────────────────────── */
+  .arch {
+    border-radius: var(--radius-arch);
+    overflow: hidden;
+  }
+
+  /* ───────────────────────── Marquee de parceiros ───────────────────────── */
+  .marquee {
+    --gap: clamp(0.75rem, 1.2vw, 1rem);
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .marquee__track {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    min-width: 100%;
+    justify-content: space-around;
+    animation: marquee var(--dur, 60s) linear infinite;
+  }
+  .marquee[data-reverse] .marquee__track {
+    animation-direction: reverse;
+  }
+  .marquee:hover .marquee__track,
+  .marquee:focus-within .marquee__track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  .partner-logo {
+    width: auto;
+    object-fit: contain;
+  }
+  .partner-tile {
+    transition:
+      transform 260ms var(--ease-out-expo),
+      box-shadow 260ms var(--ease-out-expo);
+  }
+  .partner-tile:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.7),
+      0 0 0 1px var(--color-line),
+      var(--shadow-2);
+  }
+
+  /* ───────────────────────── Acordeão (FAQ) ───────────────────────── */
+  .faq summary {
+    list-style: none;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq details[open] .faq__icon {
+    transform: rotate(45deg);
+  }
+  .faq__icon {
+    transition: transform 300ms var(--ease-out-expo);
+  }
+  .faq details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 420ms var(--ease-out-expo),
+      content-visibility 420ms allow-discrete;
+  }
+  .faq details[open]::details-content {
+    block-size: auto;
+  }
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  /* ───────────────────────── Arco que se desenha ───────────────────────── */
+  .arc-draw path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: arc-draw 1400ms var(--ease-out-expo) forwards;
+  }
+  .arc-draw path:nth-child(2) {
+    animation-delay: 220ms;
+  }
+  @keyframes arc-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Indicador "atendendo agora" */
+  .pulse-dot {
+    position: relative;
+  }
+  .pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    opacity: 0;
+    animation: pulse 2.2s var(--ease-out-expo) infinite;
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  /* Balões do mock de WhatsApp */
+  .js .bubble {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.98);
+    transition:
+      opacity 500ms var(--ease-out-expo),
+      transform 500ms var(--ease-out-expo);
+  }
+  .js .bubble.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ───────────────────────── Movimento reduzido ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .js .reveal,
+  .js .reveal-clip,
+  .js .bubble {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+  .marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 2rem;
+  }
+  .marquee__track[aria-hidden="true"] {
+    display: none;
+  }
+}
