@@ -13,7 +13,7 @@ function LogoImg({ p, base = 52, maxW = 150 }: { p: Partner; base?: number; maxW
       loading="lazy"
       decoding="async"
       className="partner-logo"
-      style={{ height: h }}
+      style={{ height: `calc(${h}px * var(--logo-scale, 1))` }}
     />
   );
 }
@@ -24,7 +24,10 @@ function Row({ items, reverse, dur }: { items: Partner[]; reverse?: boolean; dur
       {[0, 1].map((copy) => (
         <ul key={copy} className="marquee__track" aria-hidden={copy === 1 ? "true" : undefined}>
           {items.map((p) => (
-            <li key={p.id} className="partner-tile grid h-24 w-[188px] shrink-0 place-items-center rounded-2xl bg-surface px-5 edge-light">
+            <li
+              key={p.id}
+              className="partner-tile grid h-20 w-[150px] shrink-0 place-items-center rounded-2xl bg-surface px-4 edge-light [--logo-scale:0.8] sm:h-24 sm:w-[188px] sm:px-5 sm:[--logo-scale:1]"
+            >
               <LogoImg p={p} />
             </li>
           ))}
@@ -55,12 +58,9 @@ export default function Partners() {
         </div>
       </div>
 
-      <div className="reveal mt-12 hidden md:block" style={{ ["--i" as string]: 2 }}>
+      <div className="reveal mt-10 sm:mt-12" style={{ ["--i" as string]: 2 }}>
         <Row items={a} dur="58s" />
         <Row items={b} reverse dur="64s" />
-      </div>
-      <div className="reveal mt-10 md:hidden">
-        <Row items={ACTIVE_PARTNERS} dur="48s" />
       </div>
 
       <ul className="sr-only">

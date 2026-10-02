@@ -32,7 +32,7 @@ export default function ClaimChat() {
       ([e]) => {
         if (!e.isIntersecting) return;
         io.disconnect();
-        bubbles.forEach((b, i) => setTimeout(() => b.classList.add("is-in"), 250 + i * 650));
+        bubbles.forEach((b, i) => setTimeout(() => b.setAttribute("data-in", ""), 250 + i * 650));
       },
       { threshold: 0.35 },
     );

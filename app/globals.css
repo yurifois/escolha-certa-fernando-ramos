@@ -172,7 +172,7 @@
       opacity 700ms var(--ease-out-expo) calc(var(--i, 0) * 70ms),
       transform 700ms var(--ease-out-expo) calc(var(--i, 0) * 70ms);
   }
-  .js .reveal.is-in {
+  .js .reveal[data-in] {
     opacity: 1;
     transform: none;
   }
@@ -180,7 +180,7 @@
     clip-path: inset(0 0 100% 0);
     transition: clip-path 1000ms var(--ease-out-expo) calc(var(--i, 0) * 70ms);
   }
-  .js .reveal-clip.is-in {
+  .js .reveal-clip[data-in] {
     clip-path: inset(0 0 0 0);
   }
 
@@ -391,6 +391,7 @@
   }
   .partner-logo {
     width: auto;
+    max-width: 100%;
     object-fit: contain;
   }
   .partner-tile {
@@ -482,7 +483,7 @@
       opacity 500ms var(--ease-out-expo),
       transform 500ms var(--ease-out-expo);
   }
-  .js .bubble.is-in {
+  .js .bubble[data-in] {
     opacity: 1;
     transform: none;
   }

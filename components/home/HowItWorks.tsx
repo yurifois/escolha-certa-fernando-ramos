@@ -117,7 +117,7 @@ export default function HowItWorks() {
               <li
                 key={s.n}
                 data-glow
-                className={`reveal relative overflow-hidden rounded-[var(--radius-card)] p-7 transition-[background-color,box-shadow] duration-500 sm:p-10 lg:min-h-[300px] ${
+                className={`reveal relative overflow-hidden rounded-[var(--radius-card)] p-7 transition-[background-color,box-shadow,opacity,transform] duration-500 ease-[cubic-bezier(.22,1,.36,1)] sm:p-10 lg:min-h-[300px] ${
                   on ? "bg-paper shadow-[var(--shadow-2)] edge-light" : "bg-paper/60 edge-light"
                 }`}
                 style={{ ["--i" as string]: i }}
